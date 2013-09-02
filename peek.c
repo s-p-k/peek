@@ -65,21 +65,20 @@ main(int argc, char **argv)
 	if (hflag == 0 && status != 0)
 		fprintf(stderr, "file %s does not exist\n", filename);
 
+	/* Here I should write the code according to the other options
+	 * passed to peek. If it's -e, then the filename will be opened
+	 * for edit. I must also fix the arguments so that I have behaviour
+	 * like this: 
+	 *
+	 * $ ./peek tar # this should search for a tar cheatsheet, if it
+	 * doesn't exist, if EDITOR env variable is set, open that file
+	 * with it.
+	 *
+	 * $ ./peek -e tar # should edit the tar cheatsheet.
+	 * A cheatsheet dir variable must also be declared, so that the
+	 * program will seek for cheatsheets in that directory.
+	 */
 	if (fflag == 1 && status == 0)
-		/* Here I should write the code according to the other options
-		 * passed to peek. If it's -e, then the filename will be opened
-		 * for edit. I must also fix the arguments so that I have behaviour
-		 * like this: 
-		 *
-		 * $ ./peek tar # this should search for a tar cheatsheet, if it
-		 * doesn't exist, if EDITOR env variable is set, open that file
-		 * with it.
-		 *
-		 * $ ./peek -e tar # should edit the tar cheatsheet.
-		 * A cheatsheet dir variable must also be declared, so that the
-		 * program will seek for cheatsheets in that directory.
-		 */
-       
 		printf("File exists\n");
 
 	return 0;
