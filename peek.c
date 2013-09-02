@@ -65,7 +65,7 @@ main(int argc, char **argv)
 	if (hflag == 0 && status != 0)
 		fprintf(stderr, "file %s does not exist\n", filename);
 
-	if (fflag == 1 && status ==0)
+	if (fflag == 1 && status == 0)
 		/* Here I should write the code according to the other options
 		 * passed to peek. If it's -e, then the filename will be opened
 		 * for edit. I must also fix the arguments so that I have behaviour
