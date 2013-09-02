@@ -60,7 +60,6 @@ main(int argc, char **argv)
 		}
 
 	}
-	status = stat(filename, &buffer);
 		
 	if (hflag == 0 && status != 0)
 		fprintf(stderr, "file %s does not exist\n", filename);
