@@ -63,7 +63,10 @@ main(int argc, char **argv)
 		 * for edit. I must also fix the arguments so that I have behaviour
 		 * like this: 
 		 *
-		 * $ ./peek tar # this should search for a tar cheatsheet.
+		 * $ ./peek tar # this should search for a tar cheatsheet, if it
+		 * doesn't exist, if EDITOR env variable is set, open that file
+		 * with it.
+		 *
 		 * $ ./peek -e tar # should edit the tar cheatsheet.
 		 * A cheatsheet dir variable must also be declared, so that the
 		 * program will seek for cheatsheets in that directory.
