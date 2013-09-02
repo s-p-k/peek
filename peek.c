@@ -1,13 +1,16 @@
-/* A simple program to add, edit and read
+/* 
+ * A simple program to add, edit and read
  * your cheatsheets.
  */
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
 
-void usage(void);
+void
+usage(void);
 
 int
 main(int argc, char **argv)
@@ -19,7 +22,7 @@ main(int argc, char **argv)
 	/* the cheatsheet to be read, edited or created */
 	const char *filename = "unspecified"; 
 	
-	if (argc <= 1)
+	if (argc == 1)
 	{
 		fprintf(stderr, "Wrong usage: see %s -h\n", argv[0]);
 		return 1;
@@ -53,11 +56,9 @@ main(int argc, char **argv)
 	status = stat(filename, &buffer);
 
 	if (status != 0)
-	{
 		fprintf(stderr, "file %s does not exist\n", filename);
-	}
+	
 	else
-	{
 		/* Here I should write the code according to the other options
 		 * passed to peek. If it's -e, then the filename will be opened
 		 * for edit. I must also fix the arguments so that I have behaviour
@@ -73,7 +74,6 @@ main(int argc, char **argv)
 		 */
        
 		printf("File exists\n");
-	}
 
 	return 0;
 }
@@ -83,6 +83,6 @@ main(int argc, char **argv)
 void
 usage(void)
 {
-	printf("Usage: peek [-v][-f file][-h]\n");
+	printf("Usage: [-v][-f file][-h]\n");
 	return;
 }
