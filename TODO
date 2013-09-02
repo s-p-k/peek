@@ -24,3 +24,5 @@ TODO
 1. Write a function to read the files in the DEF_DIR
 
 2. Write a function to open a file with EDITOR when peek is ran with -e option
+
+3. Replace stat with open to check if a file exists
