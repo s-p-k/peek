@@ -12,7 +12,7 @@ $ peek -h	# show usage examples
 
 $ peek -v	# show version
 
-If all the above are finished, oprionally i could add -d option to search a
+If all the above are finished, optionally i could add -d option to search a
 cheatsheet in a different directory from the default with something like:
 
 $ peek tar -d /another/directory/
