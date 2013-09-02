@@ -10,7 +10,11 @@
 #include <unistd.h>
 
 void
-usage(void);
+usage(void)
+{
+	fprintf(stderr, "Usage: peek [-v][-f file][-h]\n");
+	return;
+}
 
 int
 main(int argc, char **argv)
@@ -19,6 +23,8 @@ main(int argc, char **argv)
 	struct stat buffer;
 	char ver[] = "0.1.1";
 	int opt, status;
+	int fflag = 0;
+	int hflag = 0;
 	/* the cheatsheet to be read, edited or created */
 	const char *filename = "unspecified"; 
 	
@@ -36,10 +42,12 @@ main(int argc, char **argv)
 			printf("The current version: %s\n", ver);
 			break;
 		case 'f':
+			fflag = 1;
 			filename = optarg;
 			printf("the filename was %s\n", filename);
 			break;
 		case 'h':
+			hflag = 1;
 			usage();
 			break;
 		case 'e':
@@ -47,17 +55,19 @@ main(int argc, char **argv)
 			printf("You have chosen to edit file %s\n", filename);
 			break;
 		default:
-			fprintf(stderr, "Usage: %s [-v][-f file]\n", argv[0]);
+			usage();
 			return 1;
 		}
 
 	}
 	status = stat(filename, &buffer);
-
-	if (status != 0)
+		
+	if (hflag == 0 && status != 0)
 		fprintf(stderr, "file %s does not exist\n", filename);
+
+	status = stat(filename, &buffer);
 	
-	else
+	if (fflag == 1 && status ==0)
 		/* Here I should write the code according to the other options
 		 * passed to peek. If it's -e, then the filename will be opened
 		 * for edit. I must also fix the arguments so that I have behaviour
@@ -75,13 +85,4 @@ main(int argc, char **argv)
 		printf("File exists\n");
 
 	return 0;
-}
-
-/* must update usage functions to inform the user for all the possible options. */
-
-void
-usage(void)
-{
-	printf("peek [-v][-f file][-h]\n");
-	return;
 }
