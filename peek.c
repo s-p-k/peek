@@ -83,6 +83,6 @@ main(int argc, char **argv)
 void
 usage(void)
 {
-	printf("Usage: [-v][-f file][-h]\n");
+	printf("Usage: peek [-v][-f file][-h]\n");
 	return;
 }
