@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#define DEF_DIR "/home/spk/repos/c/peek/csdir"
+
 void
 usage(void)
 {
@@ -17,14 +19,15 @@ usage(void)
 }
 
 int
-main(int argc, char **argv)
+main(int argc, char *argv[])
 {
 	
 	struct stat buffer;
 	char ver[] = "0.1.1";
 	int opt, status;
-	int fflag = 0;
 	int hflag = 0;
+	int eflag = 0;
+
 	/* the cheatsheet to be read, edited or created */
 	const char *filename = "unspecified"; 
 	
@@ -41,17 +44,13 @@ main(int argc, char **argv)
 		case 'v':
 			printf("The current version: %s\n", ver);
 			break;
-		case 'f':
-			fflag = 1;
-			filename = optarg;
-			printf("the filename was %s\n", filename);
-			break;
 		case 'h':
 			hflag = 1;
 			usage();
 			break;
 		case 'e':
 			filename = optarg;
+			eflag = 1;
 			printf("You have chosen to edit file %s\n", filename);
 			break;
 		default:
@@ -60,26 +59,22 @@ main(int argc, char **argv)
 		}
 
 	}
+
 	status = stat(filename, &buffer);
-		
-	if (hflag == 0 && status != 0)
+	
+	if (argc == 2)
+	{
+		filename = argv[1];
+		status = stat(filename, &buffer);
+		if (status == 0)
+			printf("Here we should open the file in argv[1]");
+	}
+	
+	if (hflag == 0 && (status = stat(filename, &buffer) != 0))
 		fprintf(stderr, "file %s does not exist\n", filename);
 
-	/* Here I should write the code according to the other options
-	 * passed to peek. If it's -e, then the filename will be opened
-	 * for edit. I must also fix the arguments so that I have behaviour
-	 * like this: 
-	 *
-	 * $ ./peek tar # this should search for a tar cheatsheet, if it
-	 * doesn't exist, if EDITOR env variable is set, open that file
-	 * with it.
-	 *
-	 * $ ./peek -e tar # should edit the tar cheatsheet.
-	 * A cheatsheet dir variable must also be declared, so that the
-	 * program will seek for cheatsheets in that directory.
-	 */
-	if (fflag == 1 && status == 0)
-		printf("File exists\n");
+	if (eflag == 1)
+		printf("Open file indicated from -e option\n");
 
 	return 0;
 }

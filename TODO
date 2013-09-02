@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+This is the behaviour peek should have
+--------------------------------------------------------------------------------
+
+$ peek tar	# this should check for a cheatsheet named tar in the default
+		# cheatsheet directory. Could be combined with less if the
+		# file has a lot of lines
+
+$ peek -e tar	# open tar cheatsheet for edit with $EDITOR
+
+$ peek -h	# show usage examples
+
+$ peek -v	# show version
+
+If all the above are finished, oprionally i could add -d option to search a
+cheatsheet in a different directory from the default with something like:
+
+$ peek tar -d /another/directory/
+
+--------------------------------------------------------------------------------
+TODO
+--------------------------------------------------------------------------------
+
+1. Write a function to read the files in the DEF_DIR
+
+2. Write a function to open a file with EDITOR when peek is ran with -e option
