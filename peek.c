@@ -1,7 +1,9 @@
 /* A simple program to add, edit and read
  * your cheatsheets.
  */
-
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -10,9 +12,10 @@ void usage(void);
 int
 main(int argc, char **argv)
 {
-
+	
+	struct stat buffer;
 	char ver[] = "0.1.1";
-	int opt;
+	int opt, status;
 	/* the cheatsheet to be read, edited or created */
 	const char *filename = "unspecified"; 
 	
@@ -47,9 +50,32 @@ main(int argc, char **argv)
 		}
 
 	}
-	
+	status = stat(filename, &buffer);
+
+	if (status != 0)
+	{
+		fprintf(stderr, "file %s does not exist\n", filename);
+	}
+	else
+	{
+		/* Here I should write the code according to the other options
+		 * passed to peek. If it's -e, then the filename will be opened
+		 * for edit. I must also fix the arguments so that I have behaviour
+		 * like this: 
+		 *
+		 * $ ./peek tar # this should search for a tar cheatsheet.
+		 * $ ./peek -e tar # should edit the tar cheatsheet.
+		 * A cheatsheet dir variable must also be declared, so that the
+		 * program will seek for cheatsheets in that directory.
+		 */
+       
+		printf("File exists\n");
+	}
+
 	return 0;
 }
+
+/* must update usage functions to inform the user for all the possible options. */
 
 void
 usage(void)
