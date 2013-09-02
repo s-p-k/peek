@@ -60,12 +60,11 @@ main(int argc, char **argv)
 		}
 
 	}
+	status = stat(filename, &buffer);
 		
 	if (hflag == 0 && status != 0)
 		fprintf(stderr, "file %s does not exist\n", filename);
 
-	status = stat(filename, &buffer);
-	
 	if (fflag == 1 && status ==0)
 		/* Here I should write the code according to the other options
 		 * passed to peek. If it's -e, then the filename will be opened
