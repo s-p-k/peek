@@ -39,7 +39,6 @@ main(int argc, char **argv)
 			filename = optarg;
 			printf("the filename was %s\n", filename);
 			break;
-
 		case 'h':
 			usage();
 			break;
@@ -83,6 +82,6 @@ main(int argc, char **argv)
 void
 usage(void)
 {
-	printf("Usage: peek [-v][-f file][-h]\n");
+	printf("peek [-v][-f file][-h]\n");
 	return;
 }
