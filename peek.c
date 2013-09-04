@@ -14,16 +14,19 @@ void
 readonly(char *f);
 
 void
+filecopy(char *f1);
+
+void
 usage(void)
 {
-	fprintf(stderr, "Usage: peek [-v][-r file][-h]\n");
+	fprintf(stderr, "Usage: peek [-v][-e file][-h]\n");
 	return;
 }
 
 int
 main(int argc, char *argv[])
 {
-	char *envp;
+	char *envp, *filename;
 	char ver[] = "0.1.1";
 	int opt;
 	int eflag = 0;
@@ -45,6 +48,7 @@ main(int argc, char *argv[])
 			break;
 		case 'e':
 			eflag = 1;
+			filename = optarg;
 			break;
 		default:
 			usage();
@@ -54,8 +58,12 @@ main(int argc, char *argv[])
 
 	if (eflag == 1){
 		envp = getenv("EDITOR");
-		if (!envp)
+		if (!envp){
 			fprintf(stderr, "You must set your $EDITOR variable\n");
+			return 1;
+		} else {
+			filecopy(filename);
+			/* open then the copy of the file for edit */
 	}
 
 	return 0;
@@ -82,5 +90,31 @@ readonly(char *f)
 		printf("%s", bf);
 
 	fclose(fpoint);
+	return;
+}
+
+/* create a file copy before opening with $EDITOR */
+
+void
+filecopy(char *f1)
+{
+	char ch;
+	FILE *fp1, *fp2;
+
+	fp1 = fopen(f1, "r"); /* Create a copy of this file */
+	fp2 = fopen("/tmp/backup.txt", "w");
+
+	while (1) {
+		ch = fgetc(fp1);
+		if (ch != EOF)
+			putc(ch, fp2);
+		else
+			break;
+	}
+
+	printf("File copied to /tmp/backup.txt");
+	fclose(fp1);
+	fclose(fp2);
+
 	return;
 }
