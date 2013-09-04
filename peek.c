@@ -10,6 +10,9 @@
 #include <unistd.h>
 
 void
+readonly(char *f);
+
+void
 usage(void)
 {
 	fprintf(stderr, "Usage: peek [-v][-r file][-h]\n");
@@ -21,18 +24,17 @@ main(int argc, char *argv[])
 {
 
 	char ver[] = "0.1.1";
-	char *filename;
-	char buf[1000];
-	int opt, fd;
-	int rflag = 0;
-	FILE *fp;
-	
+	int opt;
+
 	if (argc == 1) {
 		fprintf(stderr, "Wrong usage: see %s -h\n", argv[0]);
 		return 1;
 	}
 	
-	while ((opt = getopt(argc, argv, "vhr:")) != -1){
+	if (argc == 2)
+		readonly(argv[1]);
+
+	while ((opt = getopt(argc, argv, "vh")) != -1){
 		switch(opt){
 		case 'v':
 			printf("The current version: %s\n", ver);
@@ -40,32 +42,35 @@ main(int argc, char *argv[])
 		case 'h':
 			usage();
 			break;
-		case 'r':
-			filename = optarg;
-			rflag = 1;
-			break;
 		default:
 			usage();
 			return 1;
 		}
-
-	}
-
-	if (rflag == 1) {
-		fd = open(filename, O_RDONLY);
-		if (fd < 0) {
-			fprintf(stderr, "file %s does not exist\n", filename);
-			return 1;
-		} else {
-			fp = fopen(filename, "r");
-			if (!fp)
-				return 1;
-		}
-		while (fgets(buf,1000, fp) != NULL)
-			printf("%s", buf);
-		
-		fclose(fp);
 	}
 
 	return 0;
+}
+
+void
+readonly(char *f)
+{
+	FILE *fpoint;
+	int fdesc;
+	char bf[1000];
+	
+	fdesc = open(f, O_RDONLY);
+	if (fdesc < 0) {
+		fprintf(stderr, "file %s does not exist\n", f);
+		return;
+	} else {
+		fpoint = fopen(f, "r");
+		if (!fpoint)
+			return;
+	}
+
+	while (fgets(bf,1000, fpoint) != NULL)
+		printf("%s", bf);
+
+	fclose(fpoint);
+	return;
 }
