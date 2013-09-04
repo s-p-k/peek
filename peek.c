@@ -13,7 +13,7 @@
 void
 readonly(char *f);
 
-void
+int
 filecopy(char *f1);
 
 void
@@ -58,12 +58,13 @@ main(int argc, char *argv[])
 
 	if (eflag == 1){
 		envp = getenv("EDITOR");
-		if (!envp){
+			if (!envp){
 			fprintf(stderr, "You must set your $EDITOR variable\n");
 			return 1;
 		} else {
-			filecopy(filename);
-			/* open then the copy of the file for edit */
+		if (filecopy(filename) == 0) 
+				printf("Copying was succesful\n");
+		}/* open then the copy of the file for edit */
 	}
 
 	return 0;
@@ -95,7 +96,7 @@ readonly(char *f)
 
 /* create a file copy before opening with $EDITOR */
 
-void
+int
 filecopy(char *f1)
 {
 	char ch;
@@ -112,9 +113,9 @@ filecopy(char *f1)
 			break;
 	}
 
-	printf("File copied to /tmp/backup.txt");
+	printf("File copied to /tmp/backup.txt\n");
 	fclose(fp1);
 	fclose(fp2);
 
-	return;
+	return 0;
 }
