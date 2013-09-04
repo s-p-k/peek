@@ -25,8 +25,7 @@ main(int argc, char *argv[])
 	struct stat buffer;
 	char ver[] = "0.1.1";
 	int opt, status;
-	int hflag = 0;
-	int eflag = 0;
+	int hflag = 0, eflag = 0;
 
 	/* the cheatsheet to be read, edited or created */
 	const char *filename = "unspecified"; 
