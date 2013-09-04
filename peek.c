@@ -14,7 +14,7 @@ void
 readonly(char *f);
 
 int
-filecopy(char *f1);
+filecopy(char *f);
 
 void
 usage(void)
@@ -63,14 +63,17 @@ main(int argc, char *argv[])
 			if (!envp){
 			fprintf(stderr, "You must set your $EDITOR variable\n");
 			return 1;
-		} else {
-		if (filecopy(filename) == 0) 
+			} else {
+			 (filecopy(filename) == 0) 
 				printf("Copying was succesful\n");
-		}/* open then the copy of the file for edit */
+			 /* open the copy of the file for edit */
+			}
 	}
 
 	return 0;
 }
+
+/* open cheatsheet readonly */
 
 void
 readonly(char *f)
@@ -99,12 +102,12 @@ readonly(char *f)
 /* create a file copy before opening with $EDITOR */
 
 int
-filecopy(char *f1)
+filecopy(char *f)
 {
 	char ch;
 	FILE *fp1, *fp2;
 
-	fp1 = fopen(f1, "r"); /* Create a copy of this file */
+	fp1 = fopen(f, "r"); /* Create a copy of this file */
 	fp2 = fopen("/tmp/backup.txt", "w");
 
 	while (1) {
