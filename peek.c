@@ -28,7 +28,7 @@ main(int argc, char *argv[])
 {
 	char *envp, *filename;
 	char ver[] = "0.1.1";
-	int opt;
+	int opt, fd;
 	int eflag = 0;
 	if (argc == 1) {
 		fprintf(stderr, "Wrong usage: see %s -h\n", argv[0]);
@@ -57,6 +57,8 @@ main(int argc, char *argv[])
 	}
 
 	if (eflag == 1){
+		if ((fd = open(filename, O_RDWR)) < 0)
+			fprintf(stderr, "File %s does not exist\n", filename);
 		envp = getenv("EDITOR");
 			if (!envp){
 			fprintf(stderr, "You must set your $EDITOR variable\n");
