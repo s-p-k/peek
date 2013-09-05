@@ -12,12 +12,12 @@
 #include <errno.h>
 #include <string.h>
 
-void openfile(char *f, char *md);
+int openfile(char *f, char *md);
 
 void
 usage(void)
 {
-	fprintf(stderr, "Usage: peek [file][-e file][-h]\n");
+	printf("Usage: peek [file][-e file][-h]\n");
 	return;
 }
 
@@ -29,7 +29,7 @@ main(int argc, char *argv[])
 
 	if (argc == 1) {
 		fprintf(stderr, "Wrong usage: see %s -h\n", argv[0]);
-		return 1;
+		exit (1);
 	}
 	
 	while ((opt = getopt(argc, argv, "he:")) != -1) {
@@ -43,20 +43,22 @@ main(int argc, char *argv[])
 			break;
 		default:
 			usage();
-			return 1;
+			exit (1);
 		}
 	}
 
 	if (argc == 2 && hflag == 0)
 		openfile(argv[1], "r");
 
+/* open existing file for edit */
+
 	if (eflag == 1)
-		openfile(argv[2], "a+");
+		openfile(argv[2], "r+");
 
 	return 0;
 }
 
-void
+int
 openfile(char *f, char *md)
 {
 	int c;
@@ -66,18 +68,18 @@ openfile(char *f, char *md)
 	fpoint = fopen(f, md);
 
 	if (!fpoint) {
-		fprintf(stderr, "File %s does not exist\n", f);
-		return;
+		perror("openfile");
+		exit (1);
 	}
 
-	if ((comp = strcmp(md, "r")) == 0)
+	if ((comp = strcmp(md, "r")) == 0) {
 	    while((c = fgetc(fpoint)) != EOF)
 		    printf("%c", c);
-
-	if ((comp = strcmp(md, "a+")) == 0)
-	    printf("Open the file for edit\n");
+	} else if ((comp = strcmp(md, "r+")) == 0) {
+		printf("Open the file for edit\n");
+	}
 
 	fclose(fpoint);
 
-	return;
+	return 0;
 }
