@@ -62,12 +62,12 @@ main(int argc, char *argv[])
 			if (!envp){
 			fprintf(stderr, "You must set your $EDITOR variable\n");
 			return 1;
-			} else {
-			 (filecopy(filename) == 0) 
-				printf("Copying was succesful\n");
-			 /* open the copy of the file for edit */
 			}
 	}
+			
+	if (filecopy(filename) == 0) 
+		printf("Copying was succesful\n");
+	/* open the copy of the file for edit */
 
 	return 0;
 }
@@ -85,13 +85,12 @@ readonly(char *f)
 	if (fdesc < 0) {
 		fprintf(stderr, "file %s does not exist\n", f);
 		return;
-	} else {
-		fpoint = fopen(f, "r");
-		if (!fpoint)
-			return;
-	}
+	} 
+	fpoint = fopen(f, "r");
+	if (!fpoint)
+		return;
 
-	while (fgets(bf,1000, fpoint) != NULL)
+	while (fgets(bf, sizeof(bf), fpoint) != NULL)
 		printf("%s", bf);
 
 	fclose(fpoint);
