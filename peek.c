@@ -19,7 +19,7 @@ filecopy(char *f);
 void
 usage(void)
 {
-	fprintf(stderr, "Usage: peek [-v][-e file][-h]\n");
+	fprintf(stderr, "Usage: peek [file][-v][-e file][-h]\n");
 	return;
 }
 
@@ -30,6 +30,7 @@ main(int argc, char *argv[])
 	char ver[] = "0.1.1";
 	int opt, fd;
 	int eflag = 0;
+
 	if (argc == 1) {
 		fprintf(stderr, "Wrong usage: see %s -h\n", argv[0]);
 		return 1;
@@ -99,7 +100,7 @@ readonly(char *f)
 	return;
 }
 
-/* create a file copy before opening with $EDITOR */
+/* create a backup of the existing cheatsheet */
 
 int
 filecopy(char *f)

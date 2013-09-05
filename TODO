@@ -8,14 +8,9 @@ $ peek tar	# this should check for a cheatsheet named tar in the default
 		# peek /home/user/csdir/tar works fine.
 
 $ peek -e tar	# open tar cheatsheet for edit with $EDITOR. To avoid atomicity,
-       	# i should copy tar to a tmp file, edit it and then rename it
+	       	# i should copy tar to a tmp file, edit it and then rename it
 	    	# with rename() so that i either have the "old" or the new
 		# version of the cheatsheet.
-
-If all the above are finished, optionally i could add -d option to search a
-cheatsheet in a different directory from the default with something like:
-
-$ peek tar -d /another/directory/
 
 --------------------------------------------------------------------------------
 TODO
