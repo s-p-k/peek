@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <errno.h>
 #include <string.h>
 
 void openfile(char *f, char *md);
@@ -24,19 +25,17 @@ int
 main(int argc, char *argv[])
 {
 	int opt;
-	int eflag = 0;
+	int eflag = 0, hflag = 0;
 
 	if (argc == 1) {
 		fprintf(stderr, "Wrong usage: see %s -h\n", argv[0]);
 		return 1;
 	}
 	
-	if (argc == 2)
-		openfile(argv[1], "r");
-
 	while ((opt = getopt(argc, argv, "he:")) != -1) {
 		switch(opt){
 		case 'h':
+			hflag = 1;
 			usage();
 			break;
 		case 'e':
@@ -47,6 +46,9 @@ main(int argc, char *argv[])
 			return 1;
 		}
 	}
+
+	if (argc == 2 && hflag == 0)
+		openfile(argv[1], "r");
 
 	if (eflag == 1)
 		openfile(argv[2], "a+");
