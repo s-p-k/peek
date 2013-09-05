@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <errno.h>
+#include <err.h>
 #include <string.h>
 
 int openfile(char *f, char *md);
@@ -27,10 +27,8 @@ main(int argc, char *argv[])
 	int opt;
 	int eflag = 0, hflag = 0;
 
-	if (argc == 1) {
-		fprintf(stderr, "Wrong usage: see %s -h\n", argv[0]);
-		exit (1);
-	}
+	if (argc == 1)
+		errx(1, "see %s -h", argv[0]);
 	
 	while ((opt = getopt(argc, argv, "he:")) != -1) {
 		switch(opt){
@@ -42,8 +40,7 @@ main(int argc, char *argv[])
 			eflag = 1;
 			break;
 		default:
-			usage();
-			exit (1);
+			errx(1, "see %s -h", argv[0]);		
 		}
 	}
 
@@ -68,16 +65,15 @@ openfile(char *f, char *md)
 	fpoint = fopen(f, md);
 
 	if (!fpoint) {
-		perror("openfile");
-		exit (1);
+		err(1, "%s", f);
 	}
 
-	if ((comp = strcmp(md, "r")) == 0) {
+	if ((comp = strcmp(md, "r")) == 0)
 	    while((c = fgetc(fpoint)) != EOF)
 		    printf("%c", c);
-	} else if ((comp = strcmp(md, "r+")) == 0) {
+	
+	    if ((comp = strcmp(md, "r+")) == 0)
 		printf("Open the file for edit\n");
-	}
 
 	fclose(fpoint);
 
