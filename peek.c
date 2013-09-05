@@ -12,12 +12,12 @@
 #include <err.h>
 #include <string.h>
 
-int openfile(char *f, char *md);
+int openfile(char *f, char *mode);
 
 void
 usage(void)
 {
-	printf("Usage: peek [file][-e file][-h]\n");
+	printf("Usage: peek [-h][-e file][file]\n");
 	return;
 }
 
@@ -56,22 +56,21 @@ main(int argc, char *argv[])
 }
 
 int
-openfile(char *f, char *md)
+openfile(char *f, char *mode)
 {
 	int c;
 	FILE *fpoint;
-	int comp;
 
-	fpoint = fopen(f, md);
+	fpoint = fopen(f, mode);
 
 	if (!fpoint)
 		err(1, "%s", f);
 
-	if ((comp = strcmp(md, "r")) == 0)
+	if ((strcmp(mode, "r")) == 0)
 	    while((c = fgetc(fpoint)) != EOF)
 		    printf("%c", c);
 	
-	    if ((comp = strcmp(md, "r+")) == 0)
+	if ((strcmp(mode, "r+")) == 0)
 		printf("Open the file for edit\n");
 
 	fclose(fpoint);
