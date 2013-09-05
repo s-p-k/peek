@@ -64,9 +64,8 @@ openfile(char *f, char *md)
 
 	fpoint = fopen(f, md);
 
-	if (!fpoint) {
+	if (!fpoint)
 		err(1, "%s", f);
-	}
 
 	if ((comp = strcmp(md, "r")) == 0)
 	    while((c = fgetc(fpoint)) != EOF)
