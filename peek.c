@@ -10,11 +10,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void
-readonly(char *f);
+void readonly(char *f);
 
-int
-filecopy(char *f);
+int filecopy(char *f);
 
 void
 usage(void)
