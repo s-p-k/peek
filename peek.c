@@ -80,12 +80,12 @@ readonly(char *f)
 	FILE *fpoint;
 	int fdesc;
 	char bf[1000];
-	
-	fdesc = open(f, O_RDONLY);
-	if (fdesc < 0) {
+
+	if ((fdesc = open(f, O_RDONLY)) < 0) {
 		fprintf(stderr, "file %s does not exist\n", f);
 		return;
-	} 
+	}
+	
 	fpoint = fopen(f, "r");
 	if (!fpoint)
 		return;
