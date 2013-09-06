@@ -16,4 +16,7 @@ $ peek -e tar	# open tar cheatsheet for edit with $EDITOR. To avoid atomicity,
 TODO
 --------------------------------------------------------------------------------
 
-Write a function to open a file with EDITOR when peek is ran with -e option
+Write a function to open a file with EDITOR when peek is ran with -e option.
+The function should open a copy of the file indicated with the -e option.
+
+Write a function to list all available cheatsheets in CHEATSHEET_DIR
