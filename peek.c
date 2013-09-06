@@ -23,7 +23,7 @@ main(int argc, char *argv[])
 	if (argc == 1)
 		errx(1, "see %s -h", argv[0]);
 	
-	while ((opt = getopt(argc, argv, "he:")) != -1) {
+	while ((opt = getopt(argc, argv, "he:l")) != -1) {
 		switch(opt){
 		case 'h':
 			hflag = 1;
@@ -31,6 +31,9 @@ main(int argc, char *argv[])
 			break;
 		case 'e':
 			eflag = 1;
+			break;
+		case 'l':
+			listcheatsheets(CHEATSHEET_DIR);			
 			break;
 		default:
 			errx(1, "see %s -h", argv[0]);		

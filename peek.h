@@ -1,12 +1,15 @@
 #ifndef _peek_h_
 #define _peek_h_
 
-#define CHEATSHEET_DIR = "/home/spk/.peek/"
+#include <sys/types.h>
+#include <dirent.h>
+
+#define CHEATSHEET_DIR "/home/spk/.peek/"
 
 void
 usage(void)
 {
-	printf("Usage: peek [-h][-e file][file]\n");
+	printf("Usage: peek [-h][-l][-e file][file]\n");
 	return;
 }
 
@@ -31,6 +34,28 @@ openfile(char *f, char *mode)
 	fclose(fpoint);
 
 	return 0;
+}
+
+/* list cheatsheets if CHEATSHEET_DIR */
+
+void
+listcheatsheets(char *dr)
+{
+	DIR *d;
+	struct dirent *dir;
+	
+	d = opendir(dr);
+
+	if (!d)
+		err(1, "yo mate! %s", dr);
+
+	while ((dir = readdir(d)) != NULL) 
+		printf("%s ", dir->d_name);
+	printf("\n");
+
+	closedir(d);
+
+	return;
 }
 
 #endif
