@@ -1,9 +1,6 @@
 #ifndef _peek_h_
 #define _peek_h_
 
-#include <sys/types.h>
-#include <dirent.h>
-
 #define CHEATSHEET_DIR "/home/spk/.peek/"
 
 void
@@ -36,7 +33,7 @@ openfile(char *f, char *mode)
 	return 0;
 }
 
-/* list cheatsheets if CHEATSHEET_DIR */
+/* list cheatsheets in CHEATSHEET_DIR */
 
 void
 listcheatsheets(char *dr)
