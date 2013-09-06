@@ -17,6 +17,8 @@ TODO
 --------------------------------------------------------------------------------
 
 Write a function to open a file with EDITOR when peek is ran with -e option.
-The function should open a copy of the file indicated with the -e option.
+The function should open a copy of the file. Opening the file should be done
+with exec* functions.
 
-Write a function to list all available cheatsheets in CHEATSHEET_DIR
+Write a function to list all available cheatsheets in CHEATSHEET_DIR - HALF DONE:
+i need to make the printing prettier. 
