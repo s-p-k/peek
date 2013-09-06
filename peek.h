@@ -36,13 +36,22 @@ openfile(char *f, char *mode)
 	return 0;
 }
 
-/* Create a new cheatsheet: used for the -c option */
+/* Create a new cheatsheet and open with $EDITOR to make additions */
+
 void
 createcheatsheet(char *f)
 {
+	FILE *fpoint;
 	char newfile[50] = CHEATSHEET_DIR;
 	strcat(newfile, f);
 	printf("You want to create file %s\n", newfile);
+
+	fpoint = fopen(newfile, "w+"); /* if file exists, truncate it */
+
+	if (!fpoint)
+		err(1, "%s", newfile);
+
+	fclose(fpoint);
 	
 	return;
 }
@@ -60,6 +69,8 @@ listcheatsheets(char *dr)
 
 	if (!d)
 		err(1, "yo mate! %s", dr);
+
+	printf("Available cheatsheets:\n");
 
 	while ((dir = readdir(d)) != NULL)
 		printf("%s ", dir->d_name);
