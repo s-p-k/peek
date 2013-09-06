@@ -12,14 +12,7 @@
 #include <err.h>
 #include <string.h>
 
-int openfile(char *f, char *mode);
-
-void
-usage(void)
-{
-	printf("Usage: peek [-h][-e file][file]\n");
-	return;
-}
+#include "peek.h"
 
 int
 main(int argc, char *argv[])
@@ -51,29 +44,6 @@ main(int argc, char *argv[])
 
 	if (eflag == 1)
 		openfile(argv[2], "r+");
-
-	return 0;
-}
-
-int
-openfile(char *f, char *mode)
-{
-	int c;
-	FILE *fpoint;
-
-	fpoint = fopen(f, mode);
-
-	if (!fpoint)
-		err(1, "%s", f);
-
-	if ((strcmp(mode, "r")) == 0)
-	    while((c = fgetc(fpoint)) != EOF)
-		    printf("%c", c);
-	
-	if ((strcmp(mode, "r+")) == 0)
-		printf("Open the file for edit\n");
-
-	fclose(fpoint);
 
 	return 0;
 }
