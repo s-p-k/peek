@@ -4,21 +4,15 @@ peek - The simple cheatsheet handler
 .SH SYNOPSIS
 peek [ -h ][ -l ][ -e file ][ file ]
 .SH DESCRIPTION
-peek is a simple cheatsheet handler for 
-your personal cheatsheets. Just use it for your
-daily system administration tasks, to take a
-peek out of your favourite one-liners or anything
-else that you use often but not so often to
-remember. It is able to open your cheatsheets just
-for reading or for edit. Your cheatsheets do not need
-any special syntax; they are just regular text files.
-If no option is passed to peek but a filename, peek
-searches in the CHEATSHEET_DIR to open it. See
-peek.h if you want to set it to another directory. If
-the cheatsheet does not exist, peek shouts an
-error. If the file has a lot of lines, a pager
-like less(1) can be used to ease your tasks.
-See Examples.
+peek is a simple cheatsheet handler. You can use it for your daily system
+administration tasks, to read some notes, to take a peek out of your favourite
+one-liners or anything else that you use often but not so often to remember. If
+no option is passed to peek but a filename, peek searches in the CHEATSHEET_DIR
+to open it. See peek.h if you want to set it to another directory. If the
+cheatsheet does not exist, peek informs the user with an error. If the file has
+a lot of lines, a pager like less(1) can be used to ease your tasks. No back up
+function exist, since the text editor should handle your backups. An editor like
+mg or vim should work like a charm. See Examples.
 .SS OPTIONS
 .TP
 -h
@@ -51,7 +45,11 @@ peek -l
 
 .SH BUGS
 Probably A LOT. Please report any bugs or hit me a /msg
-on irc: dwts@freenode
+on irc: dwts@freenode or join #2f30 @freenode.
+.SH REPO
+The latest version of peek can be found on this link:
+
+https://github.com/s-p-k/peek
 
 .SH COPYRIGHT
 Copyright (c) 2013, spk (vizard.sepuku@gmail.com)
