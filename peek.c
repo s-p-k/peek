@@ -23,7 +23,6 @@ void
 usage(void)
 {
 	printf("Usage: peek [-h][-l][-e file][file]\n");
-	printf("see also the peek man page\n");
 }
 
 void readsheet(char *f);
