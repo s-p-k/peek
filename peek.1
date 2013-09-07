@@ -5,14 +5,16 @@ peek - The simple cheatsheet handler
 peek [ -h ][ -l ][ -e file ][ file ]
 .SH DESCRIPTION
 peek is a simple cheatsheet handler. You can use it for your daily system
-administration tasks, to read some notes, to take a peek out of your favourite
-one-liners or anything else that you use often but not so often to remember. If
-no option is passed to peek but a filename, peek searches in the CHEATSHEET_DIR
-to open it. See peek.h if you want to set it to another directory. If the
-cheatsheet does not exist, peek informs the user with an error. If the file has
-a lot of lines, a pager like less(1) can be used to ease your tasks. No back up
-function exist, since the text editor should handle your backups. An editor like
-mg or vim should work like a charm. See Examples.
+administration tasks, to read/take some brief notes, to take a peek out of your
+favourite one-liners or anything else that you use often but not so often to
+remember. If no option is passed to peek but a filename, peek searches in the
+CHEATSHEET_DIR to open it. See peek.h if you want to set it to another directory.
+If the cheatsheet does not exist, peek informs the user with an error. If the
+file has a lot of lines, a pager like less(1) can be used to ease your tasks.
+No back up function exist, since the text editor should handle your backups. An
+editor like mg or vim should work like a charm. Currently peek is configured to
+work with mg. The only change you would need to make if you have mg installed is
+in CHEATSHEET_DIR. See FILES.
 .SS OPTIONS
 .TP
 -h
@@ -25,10 +27,15 @@ List all available cheatsheets.
 Create or open a cheatsheet with your editor.
 .SH FILES
 .TP
-CHEATSHEET_DIR:
-The directory that your cheatsheets are saved.
-By default, this is ~/.peek/ . If you want to
-change it edit the "peek.h" file.
+Edit "peek.h" to fit your needs. Normally the changes you would need to make are:
+
+set CHEATSHEET_DIR: The directory peek stores cheatsheets.
+
+set EDITOR: Full path to your editors binary.
+
+set BIN_NAME: Just the bin name of your favourite editor.
+
+
 .SH "EXAMPLES"
 1. Open the tar cheatsheet and then exit succesfully:
 
@@ -47,7 +54,7 @@ peek -l
 Probably A LOT. Please report any bugs or hit me a /msg
 on irc: dwts@freenode or join #2f30 @freenode.
 .SH REPO
-The latest version of peek can be found on this link:
+The latest version of peek can be found here:
 
 https://github.com/s-p-k/peek
 
