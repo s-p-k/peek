@@ -32,7 +32,7 @@ void editsheet(char *f);
 
 void createsheet(char *f);
 
-void listsheets(char *dr);
+void listsheet(char *dr);
 
 int
 main(int argc, char *argv[])
@@ -54,7 +54,7 @@ main(int argc, char *argv[])
 			eflag = 1;
 			break;
 		case 'l':
-			listsheets(CHEATSHEET_DIR);			
+			listsheet(CHEATSHEET_DIR);			
 			break;
 		default:
 			errx(1, "see %s -h", argv[0]);		
@@ -142,7 +142,7 @@ createsheet(char *f)
 /* list cheatsheets in CHEATSHEET_DIR: must make the printing prettier */
 
 void
-listsheets(char *dr)
+listsheet(char *dr)
 {
 	DIR *d;
 	struct dirent *dir;
