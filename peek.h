@@ -2,24 +2,28 @@
 #define _peek_h_
 
 #define CHEATSHEET_DIR "/home/spk/.peek/"
-
-#define TMP_DIR "/tmp/"
+#define EDITOR "/usr/bin/mg"
+#define BIN_NAME "mg"
 
 void
 usage(void)
 {
 	printf("Usage: peek [-h][-l][-e file][file]\n");
 	printf("see also the peek man page\n");
+	
 	return;
 }
 
 int
-openfile(char *f, char *mode)
+readsheet(char *f, char *mode)
 {
 	int c;
 	FILE *fpoint;
+	char readfile[100] = CHEATSHEET_DIR;
 	
-	fpoint = fopen(f, mode);
+	strcat(readfile, f);
+
+	fpoint = fopen(readfile, mode);
 
 	if (!fpoint)
 		err(1, "%s", f);
@@ -27,29 +31,50 @@ openfile(char *f, char *mode)
 	if ((strcmp(mode, "r")) == 0)
 		while((c = fgetc(fpoint)) != EOF)
 			printf("%c", c);
-
-	if ((strcmp(mode, "r+")) == 0)
-		printf("Open the file for edit\n");
-
+	
 	fclose(fpoint);
 
 	return 0;
 }
 
-/* Create a new cheatsheet and open with $EDITOR to make additions */
+void
+editsheet(char *f)
+{
+	int ret;
+	FILE *fpoint;
+	char file[100] = CHEATSHEET_DIR;
+	
+	strcat(file, f); 
+
+	fpoint = fopen(file, "a+");
+
+	if (!fpoint)
+		err(1, "editsheet %s", f);
+	
+	ret = execl(EDITOR, BIN_NAME, file, (char *)0);
+
+	if (ret == -1)
+		err(1, "editsheet: check in peek.h if all variables are set\n");
+
+	fclose(fpoint);
+
+	return;
+}
+
+/* Create a new cheatsheet */
 
 void
-createcheatsheet(char *f)
+createsheet(char *f)
 {
 	FILE *fpoint;
 	char newfile[50] = CHEATSHEET_DIR;
-	strcat(newfile, f);
-	printf("You want to create file %s\n", newfile);
 
-	fpoint = fopen(newfile, "w+"); /* if file exists, truncate it */
+	strcat(newfile, f);
+	
+	fpoint = fopen(newfile, "wx");
 
 	if (!fpoint)
-		err(1, "%s", newfile);
+		err(1, "YOOOOO %s", newfile);
 
 	fclose(fpoint);
 	
@@ -60,7 +85,7 @@ createcheatsheet(char *f)
 /* must make the printing prettier */
 
 void
-listcheatsheets(char *dr)
+listsheets(char *dr)
 {
 	DIR *d;
 	struct dirent *dir;
@@ -68,7 +93,7 @@ listcheatsheets(char *dr)
 	d = opendir(dr);
 
 	if (!d)
-		err(1, "yo mate! %s", dr);
+		err(1, "listsheets %s", dr);
 
 	printf("Available cheatsheets:\n");
 
@@ -80,32 +105,6 @@ listcheatsheets(char *dr)
 	closedir(d);
 
 	return;
-}
-
-/* creates a copy of a cheatsheet, before opening it for edit with -e option */
-
-void
-makecopy(char *f)
-{
-	int ch;
-	FILE *fp1, *fp2;
-
-	fp1 = fopen(f, "r"); /* original file */
-
-	/* need to make the fp2 file look like: /tmp/cheatsheet_name.peek */
-	fp2 = fopen("TMP_DIR/f/backup/", "w"); /* backup file in /tmp */
-
-	while (1) {
-		ch = fgetc(fp1);
-
-		if (ch == EOF)
-			break;
-		else
-			putc(ch, fp2);
-	}
-
-	fclose(fp1);
-	fclose(fp2);
 }
 
 #endif

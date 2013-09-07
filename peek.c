@@ -23,26 +23,21 @@ main(int argc, char *argv[])
 	
 	int opt;
 	int eflag = 0, hflag = 0;
-	char *cheatsheet;
 
 	if (argc == 1)
 		errx(1, "see %s -h", argv[0]);
 	
-	while ((opt = getopt(argc, argv, "hc:e:l")) != -1) {
+	while ((opt = getopt(argc, argv, "hle:")) != -1) {
 		switch(opt){
 		case 'h':
 			hflag = 1;
 			usage();
 			break;
-		case 'c':
-			cheatsheet = optarg;
-			createcheatsheet(cheatsheet);
-			break;
 		case 'e':
 			eflag = 1;
 			break;
 		case 'l':
-			listcheatsheets(CHEATSHEET_DIR);			
+			listsheets(CHEATSHEET_DIR);			
 			break;
 		default:
 			errx(1, "see %s -h", argv[0]);		
@@ -50,12 +45,12 @@ main(int argc, char *argv[])
 	}
 
 	if (argc == 2 && hflag == 0)
-		openfile(argv[1], "r");
+		readsheet(argv[1], "r");
 
 /* open existing file for edit */
 
 	if (eflag == 1)
-		openfile(argv[2], "r+");
+		editsheet(argv[2]);
 
 	return 0;
 }

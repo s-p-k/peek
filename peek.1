@@ -1,0 +1,57 @@
+.TH PEEK 1 "September 2013"
+.SH NAME
+peek - The simple cheatsheet handler
+.SH SYNOPSIS
+peek [ -h ][ -l ][ -e file ][ file ]
+.SH DESCRIPTION
+peek is a simple cheatsheet handler for 
+your personal cheatsheets. Just use it for your
+daily system administration tasks, to take a
+peek out of your favourite one-liners or anything
+else that you use often but not so often to
+remember. It is able to open your cheatsheets just
+for reading or for edit. Your cheatsheets do not need
+any special syntax; they are just regular text files.
+If no option is passed to peek but a filename, peek
+searches in the CHEATSHEET_DIR to open it. See
+peek.h if you want to set it to another directory. If
+the cheatsheet does not exist, peek shouts an
+error. If the file has a lot of lines, a pager
+like less(1) can be used to ease your tasks.
+See Examples.
+.SS OPTIONS
+.TP
+-h
+Show the help message and exit.
+.TP
+-l
+List all available cheatsheets.
+.TP
+-e
+Create or open a cheatsheet with your editor.
+.SH FILES
+.TP
+CHEATSHEET_DIR:
+The directory that your cheatsheets are saved.
+By default, this is ~/.peek/ . If you want to
+change it edit the "peek.h" file.
+.SH "EXAMPLES"
+1. Open the tar cheatsheet and then exit succesfully:
+
+peek tar or peek tar | less
+
+2. Open existing tar cheatsheet and when
+done exit succesfully:
+
+peek -e tar
+
+3. List all existing cheatsheets and then exit:
+
+peek -l
+
+.SH BUGS
+Probably A LOT. Please report any bugs or hit me a /msg
+on irc: dwts@freenode
+
+.SH COPYRIGHT
+Copyright (c) 2013, spk (vizard.sepuku@gmail.com)
