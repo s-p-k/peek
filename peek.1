@@ -8,7 +8,7 @@ peek is a simple cheatsheet handler. You can use it for your daily system
 administration tasks, to read/take some brief notes, to take a peek out of your
 favourite one-liners or anything else that you use often but not so often to
 remember. If no option is passed to peek but a filename, peek searches in the
-CHEATSHEET_DIR to open it. See peek.h if you want to set it to another directory.
+CHEATSHEET_DIR to open it. See peek.c if you want to set it to another directory.
 If the cheatsheet does not exist, peek informs the user with an error. If the
 file has a lot of lines, a pager like less(1) can be used to ease your tasks.
 No back up function exists since the text editor should handle your backups. An
@@ -27,7 +27,7 @@ List all available cheatsheets.
 Create or open a cheatsheet with your editor.
 .SH FILES
 .TP
-Edit "peek.h" to fit your needs. Normally the changes you would need to make are:
+Edit "peek.c" to fit your needs. Normally the changes you would need to make are:
 
 set CHEATSHEET_DIR: The directory peek stores cheatsheets.
 
