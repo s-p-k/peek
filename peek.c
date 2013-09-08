@@ -138,7 +138,9 @@ createsheet(char *f)
 	return;
 }
 
-/* list cheatsheets in CHEATSHEET_DIR: must make the printing prettier */
+/* list cheatsheets in CHEATSHEET_DIR: must make the printing prettier
+ * and fix the error when done listing
+ */
 
 void
 listsheet(char *dr)
