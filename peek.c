@@ -25,13 +25,13 @@ usage(void)
 	printf("Usage: peek [-h][-l][-e file][file]\n");
 }
 
-void readsheet(char *f);
+void readSheet(char *f);
 
-void editsheet(char *f);
+void editSheet(char *f);
 
-void createsheet(char *f);
+void createSheet(char *f);
 
-void listsheet(char *dr);
+void listSheet(char *dr);
 
 int
 main(int argc, char *argv[])
@@ -44,7 +44,7 @@ main(int argc, char *argv[])
 		errx(1, "see %s -h", argv[0]);
 	
 	while ((opt = getopt(argc, argv, "hle:")) != -1) {
-		switch(opt){
+		switch (opt) {
 		case 'h':
 			hflag = 1;
 			usage();
@@ -53,7 +53,7 @@ main(int argc, char *argv[])
 			eflag = 1;
 			break;
 		case 'l':
-			listsheet(CHEATSHEET_DIR);			
+			listSheet(CHEATSHEET_DIR);			
 			break;
 		default:
 			errx(1, "see %s -h", argv[0]);		
@@ -61,25 +61,23 @@ main(int argc, char *argv[])
 	}
 
 	if (argc == 2 && hflag == 0)
-		readsheet(argv[1]);
+		readSheet(argv[1]);
 
 /* open existing file for edit */
-
 	if (eflag == 1)
-		editsheet(argv[2]);
+		editSheet(argv[2]);
 
 	return 0;
 }
 
 void
-readsheet(char *f)
+readSheet(char *f)
 {
 	int c;
 	FILE *fpoint;
 	char readfile[100] = CHEATSHEET_DIR;
 
 	strcat(readfile, f);
-
 	fpoint = fopen(readfile, "r");
 
 	if (!fpoint)
@@ -94,7 +92,7 @@ readsheet(char *f)
 }
 	
 void
-editsheet(char *f)
+editSheet(char *f)
 {
 
 	int ret;
@@ -102,7 +100,6 @@ editsheet(char *f)
 	char file[100] = CHEATSHEET_DIR;
 
 	strcat(file, f);
-
 	fpoint = fopen(file, "a+");
 
 	if (!fpoint)
@@ -121,13 +118,12 @@ editsheet(char *f)
 /* Create a new cheatsheet */
 
 void
-createsheet(char *f)
+createSheet(char *f)
 {
 	FILE *fpoint;
 	char newfile[50] = CHEATSHEET_DIR;
 
 	strcat(newfile, f);
-
 	fpoint = fopen(newfile, "wx");
 
 	if (!fpoint)
@@ -143,7 +139,7 @@ createsheet(char *f)
  */
 
 void
-listsheet(char *dr)
+listSheet(char *dr)
 {
 	DIR *d;
 	struct dirent *dir;
