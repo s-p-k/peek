@@ -14,6 +14,7 @@
 #include <err.h>
 #include <string.h>
 #include <dirent.h>
+#include <limits.h>
 
 #define CHEATSHEET_DIR "/home/spk/.peek/"
 #define EDITOR "/usr/bin/mg"
@@ -41,7 +42,7 @@ main(int argc, char *argv[])
 	int eflag = 0, hflag = 0;
 
 	if (argc == 1)
-		errx(1, "see %s -h", argv[0]);
+		usage();
 	
 	while ((opt = getopt(argc, argv, "hle:")) != -1) {
 		switch (opt) {
@@ -75,7 +76,7 @@ readSheet(char *f)
 {
 	int c;
 	FILE *fpoint;
-	char readfile[100] = CHEATSHEET_DIR;
+	char readfile[PATH_MAX] = CHEATSHEET_DIR;
 
 	strcat(readfile, f);
 	fpoint = fopen(readfile, "r");
@@ -97,7 +98,7 @@ editSheet(char *f)
 
 	int ret;
 	FILE *fpoint;
-	char file[100] = CHEATSHEET_DIR;
+	char file[PATH_MAX] = CHEATSHEET_DIR;
 
 	strcat(file, f);
 	fpoint = fopen(file, "a+");
@@ -121,7 +122,7 @@ void
 createSheet(char *f)
 {
 	FILE *fpoint;
-	char newfile[50] = CHEATSHEET_DIR;
+	char newfile[PATH_MAX] = CHEATSHEET_DIR;
 
 	strcat(newfile, f);
 	fpoint = fopen(newfile, "wx");
