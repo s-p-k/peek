@@ -1,6 +1,7 @@
-________________________________________________________________________________
-peek is a simple cheatsheet handler written in C.
+peek 
 --------------------------------------------------------------------------------
+
+Peek is a simple cheatsheet handler.
 
 Configuring peek:
 
