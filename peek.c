@@ -62,13 +62,10 @@ main(int argc, char *argv[])
 
 	if (hflag == 1)
 		usage();
-
 	if (lflag == 1)
 		listSheet(CHEATSHEET_DIR);
-
 	if (eflag == 1)
 		editSheet(argv[2]);
-
 	if (argc == 2 && hflag == 0 && eflag == 0 && lflag == 0)
 		readSheet(argv[1]);
 
@@ -106,27 +103,6 @@ editSheet(char *f)
 
 	return;
 }
-
-/* Create a new cheatsheet */
-
-void
-createSheet(char *f)
-{
-	FILE *fpoint;
-	char newfile[PATH_MAX] = CHEATSHEET_DIR;
-
-	strcat(newfile, f);
-	fpoint = fopen(newfile, "wx");
-	if (!fpoint)
-		err(1, "createSheet: %s", newfile);
-	fclose(fpoint);
-
-	return;
-}
-
-/* list cheatsheets in CHEATSHEET_DIR: must make the printing prettier
- * and fix the error when done listing
- */
 
 void
 listSheet(char *dr)
