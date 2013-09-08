@@ -79,7 +79,7 @@ readSheet(char *f)
 	FILE *fpoint;
 	char readfile[PATH_MAX] = CHEATSHEET_DIR;
 
-	strncat(readfile, f, sizeof(readfile) - 1);
+	strncat(readfile, f, sizeof(readfile) - strlen(readfile) - 1);
 	fpoint = fopen(readfile, "r");
 	if (!fpoint)
 		err(1, "readSheet %s", f);
@@ -96,10 +96,10 @@ editSheet(char *f)
 	int ret;
 	char file[PATH_MAX] = CHEATSHEET_DIR;
 
-	strcat(file, f);
+	strncat(file, f, sizeof(file) - strlen(file) - 1);
 	ret = execl(EDITOR, BIN_NAME, file, (char *)0);
 	if (ret == -1)
-		err(1, "editSheet: check in peek.h if all variables are set\n");
+		err(1, "editSheet: configure peek.c correctly\n");
 
 	return;
 }
