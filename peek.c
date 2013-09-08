@@ -20,12 +20,6 @@
 #define EDITOR "/usr/bin/mg"
 #define BIN_NAME "mg"
 
-void
-usage(void)
-{
-	printf("Usage: peek [-h][-l][-e file][file]\n");
-}
-
 void readSheet(char *f);
 
 void editSheet(char *f);
@@ -33,6 +27,12 @@ void editSheet(char *f);
 void createSheet(char *f);
 
 void listSheet(char *dr);
+
+void
+usage(void)
+{
+	printf("Usage: peek [-h][-l][-e file][file]\n");
+}
 
 int
 main(int argc, char *argv[])
@@ -74,20 +74,16 @@ main(int argc, char *argv[])
 void
 readSheet(char *f)
 {
-	int c, max;
+	int c;
 	FILE *fpoint;
 	char readfile[PATH_MAX] = CHEATSHEET_DIR;
 
-	max = sizeof(PATH_MAX) + sizeof(CHEATSHEET_DIR) + sizeof(f);
-	strncat(readfile, f, max - 1);
+	strncat(readfile, f, sizeof(readfile) - 1);
 	fpoint = fopen(readfile, "r");
-
 	if (!fpoint)
 		err(1, "readSheet %s", f);
-
 	while((c = fgetc(fpoint)) != EOF)
 		printf("%c", c);
-	
 	fclose(fpoint);
 
 	return;
@@ -96,23 +92,13 @@ readSheet(char *f)
 void
 editSheet(char *f)
 {
-
 	int ret;
-	FILE *fpoint;
 	char file[PATH_MAX] = CHEATSHEET_DIR;
 
 	strcat(file, f);
-	fpoint = fopen(file, "a+");
-
-	if (!fpoint)
-		err(1, "editsheet %s", f);
-
 	ret = execl(EDITOR, BIN_NAME, file, (char *)0);
-
 	if (ret == -1)
-		err(1, "editsheet: check in peek.h if all variables are set\n");
-
-	fclose(fpoint);
+		err(1, "editSheet: check in peek.h if all variables are set\n");
 
 	return;
 }
@@ -127,10 +113,8 @@ createSheet(char *f)
 
 	strcat(newfile, f);
 	fpoint = fopen(newfile, "wx");
-
 	if (!fpoint)
-		err(1, "YOOOOO %s", newfile);
-
+		err(1, "createSheet: %s", newfile);
 	fclose(fpoint);
 
 	return;
@@ -147,15 +131,11 @@ listSheet(char *dr)
 	struct dirent *dir;
 
 	d = opendir(dr);
-
 	if (!d)
-		err(1, "listsheets %s", dr);
-
+		err(1, "listSheet: %s", dr);
 	printf("Available cheatsheets:\n");
-
 	while ((dir = readdir(d)) != NULL)
 		printf("%s\n", dir->d_name);
-
 	closedir(d);
 
 	return;
