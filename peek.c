@@ -39,7 +39,7 @@ main(int argc, char *argv[])
 {
 	
 	int opt;
-	int eflag = 0, hflag = 0;
+	int hflag = 0, eflag = 0, lflag = 0;
 
 	if (argc == 1)
 		usage();
@@ -48,25 +48,29 @@ main(int argc, char *argv[])
 		switch (opt) {
 		case 'h':
 			hflag = 1;
-			usage();
 			break;
 		case 'e':
 			eflag = 1;
 			break;
 		case 'l':
-			listSheet(CHEATSHEET_DIR);			
+			lflag = 1;
 			break;
 		default:
 			errx(1, "see %s -h", argv[0]);		
 		}
 	}
 
-	if (argc == 2 && hflag == 0)
-		readSheet(argv[1]);
+	if (hflag == 1)
+		usage();
 
-/* open existing file for edit */
+	if (lflag == 1)
+		listSheet(CHEATSHEET_DIR);
+
 	if (eflag == 1)
 		editSheet(argv[2]);
+
+	if (argc == 2 && hflag == 0 && eflag == 0 && lflag == 0)
+		readSheet(argv[1]);
 
 	return 0;
 }
