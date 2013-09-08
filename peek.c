@@ -154,9 +154,7 @@ listsheet(char *dr)
 	printf("Available cheatsheets:\n");
 
 	while ((dir = readdir(d)) != NULL)
-		printf("%s ", dir->d_name);
-
-	printf("\n");
+		printf("%s\n", dir->d_name);
 
 	closedir(d);
 
