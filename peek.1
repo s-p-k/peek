@@ -1,40 +1,42 @@
 .TH PEEK 1 "September 2013"
 .SH NAME
-peek - The simple cheatsheet handler
+peek \- The simple cheatsheet handler
 .SH SYNOPSIS
-peek [ -h ][ -l ][ -e file ][ file ]
+.B peek [ -h ][ -l ][ -e file ][ file ]
 .SH DESCRIPTION
 peek is a simple cheatsheet handler. You can use it for your daily system
 administration tasks, to read/take some brief notes, to take a peek out of your
 favourite one-liners or anything else that you use often but not so often to
-remember. If no option is passed to peek but a filename, peek searches in the
-CHEATSHEET_DIR to open it. See peek.c if you want to set it to another directory.
-If the cheatsheet does not exist, peek informs the user with an error. If the
-file has a lot of lines, a pager like less(1) can be used to ease your tasks.
+remember.
+.br
+
+If no option is passed to peek but a filename, peek searches in the
+CHEATSHEET_DIR to open it. Edit peek.c to search your CHEATSHEET_DIR. If the
+cheatsheet does not exist, peek informs the user with an error. If the file has
+a lot of lines, a pager like less(1) can be used to ease your tasks.
+.br
+
 No back up function exists since the text editor should handle your backups. An
-editor like mg or vim should work like a charm. Currently peek is configured to
-work with mg. The only change you would need to make if you have mg installed is
-in CHEATSHEET_DIR. See FILES.
-.SS OPTIONS
+editor like mg or vim should work like a charm. 
+.SH OPTIONS
 .TP
--h
+.B \-h
 Show the help message and exit.
 .TP
--l
+.B \-l
 List all available cheatsheets.
 .TP
--e
+.B \-e
 Create or open a cheatsheet with your editor.
-.SH FILES
+.SH FILE(S)
 .TP
 Edit "peek.c" to fit your needs. Normally the changes you would need to make are:
 
 set CHEATSHEET_DIR: The directory peek stores cheatsheets.
 
-set EDITOR: Full path to your editors binary.
+set EDITOR: Full path to your editors binary
 
 set BIN_NAME: Just the bin name of your favourite editor.
-
 
 .SH "EXAMPLES"
 1. Open the tar cheatsheet and then exit succesfully:
