@@ -74,15 +74,16 @@ main(int argc, char *argv[])
 void
 readSheet(char *f)
 {
-	int c;
+	int c, max;
 	FILE *fpoint;
 	char readfile[PATH_MAX] = CHEATSHEET_DIR;
 
-	strcat(readfile, f);
+	max = sizeof(PATH_MAX) + sizeof(CHEATSHEET_DIR) + sizeof(f);
+	strncat(readfile, f, max - 1);
 	fpoint = fopen(readfile, "r");
 
 	if (!fpoint)
-		err(1, "%s", f);
+		err(1, "readSheet %s", f);
 
 	while((c = fgetc(fpoint)) != EOF)
 		printf("%c", c);
