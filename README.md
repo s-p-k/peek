@@ -23,4 +23,4 @@ exists.
 3. I will soon add a Makefile, until then just build with gcc with something
 like:
 
-gcc -Wall -Wextra -Wunused peek.c -o peek
+```gcc -Wall -Wextra -Wunused peek.c -o peek```
