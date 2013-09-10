@@ -16,8 +16,15 @@ favourite editor and make the following changes:
 
 	BIN_NAME "mg"
 
-If you want to use vim instead, replace mg with vim and make sure ~/.peek
-exists.
+	CHEATSHEETDIR is the directory where your cheatsheets are stored:
+	change according to your tastes.
+
+	EDITOR: where your editor's binary lives.
+
+	BIN_NAME: the name of your editor.
+	
+If you want to use vim instead, replace mg with vim, change CHEATSHEETDIR and
+make sure ~/.peek exists.
 
 2. Save it.
 
