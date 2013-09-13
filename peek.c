@@ -17,8 +17,6 @@
 #include <limits.h>
 
 #define CHEATSHEET_DIR "/home/spk/.peek/"
-#define EDITOR "/bin/zile"
-#define BIN_NAME "zile"
 
 void readSheet(char *f);
 
@@ -40,7 +38,7 @@ main(int argc, char *argv[])
 	int opt;
 	int hflag = 0, eflag = 0, lflag = 0;
 
-	if (argc == 1)
+	if (argc)
 		usage();
 	
 	while ((opt = getopt(argc, argv, "hle:")) != -1) {
@@ -94,7 +92,17 @@ editSheet(char *f)
 {
 	int ret;
 	char file[PATH_MAX] = CHEATSHEET_DIR;
+	char *EDITOR, *BIN_NAME;
 
+	EDITOR = getenv("EDITOR");
+	if (!EDITOR) {
+		EDITOR = "/usr/bin/vi";
+		BIN_NAME = "vi";
+	}
+
+	BIN_NAME = strrchr(EDITOR, '/');
+	BIN_NAME = strrchr(EDITOR, BIN_NAME[1]);
+	
 	strncat(file, f, sizeof(file) - strlen(file) - 1);
 	ret = execl(EDITOR, BIN_NAME, file, (char *)0);
 	if (ret == -1)
