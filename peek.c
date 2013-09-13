@@ -114,7 +114,10 @@ listSheet(char *dr)
 		err(1, "listSheet: %s", dr);
 	printf("Available cheatsheets:\n");
 	while ((dir = readdir(d)) != NULL)
-		printf("%s\n", dir->d_name);
+		if (!strcmp(dir->d_name, ".") || !(strcmp(dir->d_name, "..")))
+			continue;
+		else
+			printf("%s\n", dir->d_name);
 	closedir(d);
 
 	return;
