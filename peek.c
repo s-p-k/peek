@@ -17,8 +17,8 @@
 #include <limits.h>
 
 #define CHEATSHEET_DIR "/home/spk/.peek/"
-#define EDITOR "/usr/bin/mg"
-#define BIN_NAME "mg"
+#define EDITOR "/bin/zile"
+#define BIN_NAME "zile"
 
 void readSheet(char *f);
 
@@ -31,13 +31,12 @@ void listSheet(char *dr);
 void
 usage(void)
 {
-	printf("Usage: peek [-h][-l][-e file][file]\n");
+	printf("Usage: peek [-h] [-l] [-e file] [file]\n");
 }
 
 int
 main(int argc, char *argv[])
 {
-	
 	int opt;
 	int hflag = 0, eflag = 0, lflag = 0;
 
@@ -60,11 +59,11 @@ main(int argc, char *argv[])
 		}
 	}
 
-	if (hflag == 1)
+	if (hflag)
 		usage();
-	if (lflag == 1)
+	if (lflag)
 		listSheet(CHEATSHEET_DIR);
-	if (eflag == 1)
+	if (eflag)
 		editSheet(argv[2]);
 	if (argc == 2 && hflag == 0 && eflag == 0 && lflag == 0)
 		readSheet(argv[1]);
