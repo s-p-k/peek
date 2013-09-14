@@ -38,9 +38,9 @@ main(int argc, char *argv[])
 	int opt;
 	int hflag = 0, eflag = 0, lflag = 0;
 
-	if (argc)
+	if (argc == 1)
 		usage();
-	
+
 	while ((opt = getopt(argc, argv, "hle:")) != -1) {
 		switch (opt) {
 		case 'h':
@@ -91,17 +91,17 @@ void
 editSheet(char *f)
 {
 	int ret;
-	char file[PATH_MAX] = CHEATSHEET_DIR;
 	char *EDITOR, *BIN_NAME;
+	char file[PATH_MAX] = CHEATSHEET_DIR;
 
 	EDITOR = getenv("EDITOR");
 	if (!EDITOR) {
 		EDITOR = "/usr/bin/vi";
 		BIN_NAME = "vi";
+	} else {
+		BIN_NAME = strrchr(EDITOR, '/'); /* here BIN_NAME is /bin_name */
+		BIN_NAME = strrchr(EDITOR, BIN_NAME[1]); /* remove '/' from bin_name */
 	}
-
-	BIN_NAME = strrchr(EDITOR, '/');
-	BIN_NAME = strrchr(EDITOR, BIN_NAME[1]);
 	
 	strncat(file, f, sizeof(file) - strlen(file) - 1);
 	ret = execl(EDITOR, BIN_NAME, file, (char *)0);
