@@ -102,7 +102,6 @@ editSheet(char *f)
 		BIN_NAME = strrchr(EDITOR, '/'); /* here BIN_NAME is /bin_name */
 		BIN_NAME = strrchr(EDITOR, BIN_NAME[1]); /* remove '/' from bin_name */
 	}
-	
 	strncat(file, f, sizeof(file) - strlen(file) - 1);
 	ret = execl(EDITOR, BIN_NAME, file, (char *)0);
 	if (ret == -1)
