@@ -15,6 +15,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <limits.h>
+#include <libgen.h>
 
 #define CHEATSHEET_DIR "/home/spk/.peek/"
 
@@ -83,6 +84,7 @@ readSheet(char *f)
 	while((c = fgetc(fpoint)) != EOF)
 		printf("%c", c);
 	fclose(fpoint);
+	printf("\n");
 
 	return;
 }
@@ -91,19 +93,15 @@ void
 editSheet(char *f)
 {
 	int ret;
-	char *EDITOR, *BIN_NAME;
+	char *editor, *bin_name;
 	char file[PATH_MAX] = CHEATSHEET_DIR;
 
-	EDITOR = getenv("EDITOR");
-	if (!EDITOR) {
-		EDITOR = "/usr/bin/vi";
-		BIN_NAME = "vi";
-	} else {
-		BIN_NAME = strrchr(EDITOR, '/'); /* here BIN_NAME is /bin_name */
-		BIN_NAME = strrchr(EDITOR, BIN_NAME[1]); /* remove '/' from bin_name */
-	}
+	editor = getenv("EDITOR");
+	if (!editor)
+		editor = "/usr/bin/vi";
+	bin_name = basename(editor);
 	strncat(file, f, sizeof(file) - strlen(file) - 1);
-	ret = execl(EDITOR, BIN_NAME, file, (char *)0);
+	ret = execl(editor, bin_name, file, (char *)0);
 	if (ret == -1)
 		err(1, "editSheet: configure peek.c correctly\n");
 
