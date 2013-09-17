@@ -6,29 +6,14 @@ Peek is a simple cheatsheet handler.
 
 Configuring peek:
 
-1. Supposing you want to configure peek with mg, open peek.c with your
-favourite editor and make the following changes:
-
+1. peek used by default your $EDITOR, if $EDITOR is not set, it uses /usr/bin/vi
 
 	CHEATSHEETDIR "/home/your-user/.peek/"
 
-	EDITOR "/usr/bin/mg"
-
-	BIN_NAME "mg"
-
 	CHEATSHEETDIR is the directory where your cheatsheets are stored:
-	change according to your tastes.
+	edit peek.c according to your tastes.
 
-	EDITOR: where your editor's binary lives.
-
-	BIN_NAME: the name of your editor.
-	
-If you want to use vim instead, replace mg with vim, change CHEATSHEETDIR and
-make sure ~/.peek exists.
-
-2. Save it.
-
-3. I will soon add a Makefile, until then just build with gcc with something
+2. I will soon add a Makefile, until then just build with gcc with something
 like:
 
 gcc -Wall -Wextra peek.c -o peek
