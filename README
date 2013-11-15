@@ -12,18 +12,7 @@ favourite editor and make the following changes:
 
 	CHEATSHEETDIR "/home/your-user/.peek/"
 
-	EDITOR "/usr/bin/mg"
-
-	BIN_NAME "mg"
-
-	CHEATSHEETDIR is the directory where your cheatsheets are stored:
-	change according to your tastes.
-
-	EDITOR: where your editor's binary lives.
-
-	BIN_NAME: the name of your editor.
 	
-If you want to use vim instead, replace mg with vim, change CHEATSHEETDIR and
 make sure ~/.peek exists.
 
 2. Save it.
@@ -32,3 +21,9 @@ make sure ~/.peek exists.
 like:
 
 gcc -Wall -Wextra peek.c -o peek
+
+4. You can get a sample of cheatheets here:
+
+https://github.com/s-p-k/cheatsheets
+
+Just copy them on your ~/.peek/ directory.
