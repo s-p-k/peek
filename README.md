@@ -30,3 +30,7 @@ ________________________________________________________________________________
 Listing available cheatsheets in ~/.peek/:
 
 ![list-cheatsheets](https://github.com/s-p-k/peek/blob/master/list-cs.png)
+
+Supposing i want to read the 'git' cheatsheet:
+
+![read-cs](https://github.com/s-p-k/peek/blob/master/peek-readcs.png)
