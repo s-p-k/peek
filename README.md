@@ -29,4 +29,4 @@ ________________________________________________________________________________
 
 Listing available cheatsheets in ~/.peek/:
 
-![alt tag](https://github.com/s-p-k/peek/blob/master/list-cs.png)
+![list-cheatsheets](https://github.com/s-p-k/peek/blob/master/list-cs.png)
