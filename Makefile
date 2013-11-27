@@ -9,7 +9,7 @@ MANDST = ${PREFIX}${MANDIR}
 
 CC = gcc
 
-CFLAGS += -Wall -Wextra -Wunused
+CFLAGS += -Wall -Wextra
 
 $(BIN): ${OBJ}
 	 ${CC} ${CFLAGS} -o $@ ${OBJ}
@@ -30,6 +30,6 @@ install:
 
 uninstall:
 	rm -f ${PREFIX}/bin/${BIN}
-	rm -f ${PREFIX}/${MANDST}/peek.1.gz
+	rm -f ${MANDST}/peek.1.gz
 
 .PHONY: install uninstall clean
