@@ -12,10 +12,13 @@ Configuring peek:
 
 make sure ~/.peek exists.
 
-2. I will soon add a Makefile, until then just build with gcc with something
-like:
+2. To install run
 
-gcc -Wall -Wextra peek.c -o peek
+make
+
+sudo make install
+
+You should be ready to use peek.
 
 3. You can get a sample of cheatheets here:
 
