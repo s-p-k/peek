@@ -6,7 +6,7 @@ Peek is a simple cheatsheet handler.
 
 --------------------------------------------------------------------------------
 Configuring peek
-________________________________________________________________________________
+--------------------------------------------------------------------------------
 
 peek uses by default your $EDITOR variable to edit your cheatsheets. If $EDITOR
 is not set, it uses /usr/bin/vi.
