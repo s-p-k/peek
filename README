@@ -4,23 +4,41 @@ peek
 
 Peek is a simple cheatsheet handler.
 
-Configuring peek:
+--------------------------------------------------------------------------------
+Configuring peek
+________________________________________________________________________________
 
-1. peek used by default your $EDITOR, if $EDITOR is not set, it uses /usr/bin/vi
+peek uses by default your $EDITOR variable to edit your cheatsheets. If $EDITOR
+is not set, it uses /usr/bin/vi.
 
-	CHEATSHEETDIR "/home/your-user/.peek/"
+So just set your $EDITOR variable. Since the directory that the cheatsheets are
+saved is ~/.peek , you have to create it if it doesn't exist. If you want a
+different directory to save your cheatsheets, edit peek.c according to your
+needs.
 
-make sure ~/.peek exists.
+--------------------------------------------------------------------------------
+Installing peek
+________________________________________________________________________________
 
-2. To install run
+To install run:
 
-make
+1. make
 
-sudo make install
+2. sudo make install
 
-You should be ready to use peek.
+--------------------------------------------------------------------------------
+Uninstalling peek
+________________________________________________________________________________
 
-3. You can get a sample of cheatheets here:
+To uninstall just run:
+
+sudo make uninstall
+
+________________________________________________________________________________
+Cheatshets
+________________________________________________________________________________
+
+You can get a sample of cheatheets here:
 
 https://github.com/s-p-k/cheatsheets
 
