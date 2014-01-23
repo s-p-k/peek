@@ -30,7 +30,7 @@ void listSheet(char *dr);
 void
 usage(void)
 {
-	printf("Usage: peek [-h] [-l] [-e file] [file]\n");
+	printf("Usage: peek [-h] [-e file] [file]\n");
 }
 
 int
@@ -40,7 +40,7 @@ main(int argc, char *argv[])
 	int hflag = 0, eflag = 0, lflag = 0;
 
 	if (argc == 1)
-		usage();
+		listSheet(CHEATSHEET_DIR);
 
 	while ((opt = getopt(argc, argv, "hle:")) != -1) {
 		switch (opt) {
@@ -50,9 +50,6 @@ main(int argc, char *argv[])
 		case 'e':
 			eflag = 1;
 			break;
-		case 'l':
-			lflag = 1;
-			break;
 		default:
 			errx(1, "see %s -h", argv[0]);		
 		}
@@ -60,8 +57,6 @@ main(int argc, char *argv[])
 
 	if (hflag)
 		usage();
-	if (lflag)
-		listSheet(CHEATSHEET_DIR);
 	if (eflag)
 		editSheet(argv[2]);
 	if (argc == 2 && hflag == 0 && eflag == 0 && lflag == 0)
