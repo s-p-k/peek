@@ -42,7 +42,7 @@ main(int argc, char *argv[])
 	if (argc == 1)
 		listSheet(CHEATSHEET_DIR);
 
-	while ((opt = getopt(argc, argv, "hle:")) != -1) {
+	while ((opt = getopt(argc, argv, "he:")) != -1) {
 		switch (opt) {
 		case 'h':
 			hflag = 1;
