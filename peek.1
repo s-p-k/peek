@@ -1,4 +1,4 @@
-.TH PEEK 1 "January 2014"
+.TH PEEK 1 "May 2014"
 .SH NAME
 peek \- The simple cheatsheet handler
 .SH SYNOPSIS
@@ -27,14 +27,15 @@ Show the help message and exit.
 Create or open a cheatsheet with your editor.
 .SH FILE(S)
 .TP
-Edit "peek.c" to fit your needs.
+Edit "config.h" to fit your user and cheatsheet directory.
 
-set CHEATSHEET_DIR: The directory that peek stores your cheatsheets.
+CHEATSHEET_DIR: The directory that peek stores your cheatsheets.
+See "config.h".
 
 .SH "EXAMPLES"
 1. Read the tar cheatsheet and then exit succesfully:
 
-peek tar or peek tar | less
+peek tar
 
 2. Open tar cheatsheet for edit (or creation) and when
 done exit succesfully:
