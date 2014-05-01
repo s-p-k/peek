@@ -17,7 +17,7 @@
 #include <limits.h>
 #include <libgen.h>
 
-#define CHEATSHEET_DIR "/home/spk/.peek/"
+#include "config.h"
 
 void readSheet(char *f);
 
