@@ -12,9 +12,10 @@ peek uses by default your $EDITOR variable to edit your cheatsheets. If $EDITOR
 is not set, it uses /usr/bin/vi.
 
 So just set your $EDITOR variable. Since the directory that the cheatsheets are
-saved is ~/.peek , you have to create it if it doesn't exist. If you want a
-different directory to save your cheatsheets, edit peek.c according to your
-needs.
+saved is ~/.peek/ , you have to create it and edit config.h to point to it. If
+you want a different directory to save your cheatsheets, edit config.h according
+to your needs. After making the changes to your config.h continue to installing
+peek.
 
 --------------------------------------------------------------------------------
 Installing peek
@@ -42,15 +43,3 @@ You can get a sample of cheatheets here:
 https://github.com/s-p-k/cheatsheets
 
 Just copy them on your ~/.peek/ directory.
-
---------------------------------------------------------------------------------
-Screenshots
---------------------------------------------------------------------------------
-
-Listing available cheatsheets in ~/.peek/:
-
-https://github.com/s-p-k/peek/blob/master/list-cs.png
-
-Supposing i want to read the 'git' cheatsheet:
-
-https://github.com/s-p-k/peek/blob/master/peek-readcs.png
