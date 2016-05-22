@@ -1,4 +1,5 @@
-/* The directory where your cheatsheets are saved.
+/* 
+ * The directory where your cheatsheets are saved.
  * Replace user and directory accordingly.
  */
 

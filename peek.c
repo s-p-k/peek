@@ -93,7 +93,7 @@ editSheet(char *f)
 
 	editor = getenv("EDITOR");
 	if (!editor)
-		editor = "/usr/bin/vi";
+		editor = "/bin/vi";
 	bin_name = basename(editor);
 	strncat(file, f, sizeof(file) - strlen(file) - 1);
 	ret = execl(editor, bin_name, file, (char *)0);
