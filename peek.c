@@ -116,7 +116,7 @@ listSheet(char *dr)
 			continue;
 		else
 			printf("%s\n", dir->d_name);
-	closedir(d);
+	(void) closedir(d);
 
 	return;
 }
