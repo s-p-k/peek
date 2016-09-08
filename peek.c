@@ -67,7 +67,7 @@ static void
 readSheet(char *f)
 {
 	int c;
-	FILE *fpoint;
+	FILE *fpoint = NULL;
 	char readfile[PATH_MAX] = CHEATSHEET_DIR;
 
 	strncat(readfile, f, sizeof(readfile) - strlen(readfile) - 1);
