@@ -76,7 +76,7 @@ readSheet(char *f)
 		err(1, "readSheet %s", f);
 	while((c = fgetc(fpoint)) != EOF)
 		printf("%c", c);
-	fclose(fpoint);
+	(void) fclose(fpoint);
 	printf("\n");
 
 	return;
