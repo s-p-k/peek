@@ -19,15 +19,13 @@
 
 #include "config.h"
 
-void readSheet(char *f);
+static void readSheet(char *f);
 
-void editSheet(char *f);
+static void editSheet(char *f);
 
-void createSheet(char *f);
+static void listSheet(char *dr);
 
-void listSheet(char *dr);
-
-void
+static void
 usage(void)
 {
 	printf("Usage: peek [-h] [-e file] [file]\n");
@@ -65,7 +63,7 @@ main(int argc, char *argv[])
 	return 0;
 }
 
-void
+static void
 readSheet(char *f)
 {
 	int c;
@@ -84,7 +82,7 @@ readSheet(char *f)
 	return;
 }
 	
-void
+static void
 editSheet(char *f)
 {
 	int ret;
@@ -103,7 +101,7 @@ editSheet(char *f)
 	return;
 }
 
-void
+static void
 listSheet(char *dr)
 {
 	DIR *d;
